@@ -1,0 +1,35 @@
+name: Deploy
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '20'
+        cache: 'npm'
+    
+    - name: Install frontend dependencies
+      run: npm install
+    
+    - name: Install backend dependencies
+      run: |
+        cd services/server
+        npm install
+    
+    - name: Build backend
+      run: |
+        cd services/server
+        npm run build
+      env:
+        GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}

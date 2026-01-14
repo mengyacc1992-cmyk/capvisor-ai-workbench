@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: capvisor-backend
+    env: node
+    buildCommand: cd services/server && npm install && npm run build
+    startCommand: cd services/server && node dist/index.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 8787
+    healthCheckPath: /healthz

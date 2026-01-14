@@ -1,0 +1,7 @@
+{
+  "name": "CapVisor AI Workbench v2.0",
+  "description": "A professional AI-driven content creation workbench for the hat fashion industry, focusing on Content Asset Stream (CAS) workflows.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
